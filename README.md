@@ -14,7 +14,7 @@ environment.
 [pipx]: https://pipx.pypa.io/stable/installation/
 
 ```shell
-$ pipx install retheme-pdf
+$ pipx install git+https://github.com/xtofl/pdf-retheme.git
 ...
 ```
 
