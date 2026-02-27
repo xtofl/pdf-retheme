@@ -7,16 +7,14 @@ import io
 
 import fitz  # PyMuPDF
 from PIL import Image
+import typer
+
+cli = typer.Typer()
 
 
+@cli.command()
 def convert_to_bw(input_path: str, output_path: str, dpi: int = 150) -> None:
-    """Convert PDF to black text on white background.
-
-    Args:
-        input_path: Path to input PDF
-        output_path: Path for output PDF
-        dpi: Resolution for rendering (higher = better quality but slower)
-    """
+    """Convert PDF to black text on white background."""
     doc = fitz.open(input_path)
     output_doc = fitz.open()
 
@@ -68,11 +66,4 @@ def convert_to_bw(input_path: str, output_path: str, dpi: int = 150) -> None:
 
 
 if __name__ == "__main__":
-    input_pdf = sys.argv[1] if len(sys.argv) > 1 else "esra.pdf"
-    output_pdf = sys.argv[2] if len(sys.argv) > 2 else "esra_bw.pdf"
-
-    if not Path(input_pdf).exists():
-        print(f"Error: {input_pdf} not found")
-        sys.exit(1)
-
-    convert_to_bw(input_pdf, output_pdf)
+    cli()
